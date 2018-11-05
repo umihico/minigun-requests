@@ -8,7 +8,7 @@ Web scraping API to outsource tons of GET & xpath to cloud computing
 + 6939 requests to get all stock prices from www.nasdaq.com in 162 seconds  
 + 10000 requests to get new questions from www.stackoverflow.com in 142 seconds  
 
-![flowchart](/images/flowchart.jpg)![Powered by AWS Cloud Computing](https://d0.awsstatic.com/logos/powered-by-aws.png "Powered by AWS Cloud Computing")
+![flowchart](/images/flowchart.png)
 # 3 dollars & 5 minutes = 10,000 scraping
  (not implemented. don't pay yet)
 + [PayPal page to buy api key](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RBWEMYUS7FCF6)
