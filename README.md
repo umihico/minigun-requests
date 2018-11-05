@@ -1,5 +1,6 @@
  # minigun-requests
 > Web scraping API to outsource tons of GET & xpath to cloud computing  
+
 [![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 ### Features
 + fire your requests between 1,000-20,000 rounds per minutes like minigun.  
@@ -47,7 +48,7 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 
 
 ## Advanced Usage: What's "validation_xpaths"?
- In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
+　In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
 ```
 validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
 # "//div[@id='yyy']" >> "boolean(//div[@id='yyy'])"
