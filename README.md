@@ -42,16 +42,18 @@ which means "All specified elements by xpath have to exist in html." So you need
 ```
 # Case1: one of scraping_xpaths scrap elements which dosen't exist often
 unstable_element_xpath = "//*[@class='sometime_exist']"
-validation_xpaths.remove(unstable_element_xpath)
+validation_xpaths = validation_xpaths or [f"boolean({xpath})" for xpath in scraping_xpaths if xpath != unstable_element_xpath]
 
 # Case2: scraping_xpaths are weak and high likely to match any response  
 scraping_xpaths=['//title',] # most response contain title, not useful to detect unwanted response
-validation_xpaths=['boolean(//*[@id='something_unique'])'] # specify something which dose'nt exist in wrong/blocked/unkonwn responses
+validation_xpaths=['boolean(//*[@id='something_unique'])',] # specify something which dose'nt exist in wrong/blocked/unkonwn responses
 
 # Case3: unsure even the url(page) exist or not
-validation_xpaths=["boolean(//*[@id='something_when_exist'])"]
+validation_xpaths=["boolean(//*[@id='something_when_exist']|//*[@id='something_when_not_exist'])",] # use "|" as "or"
+
+# Case4: servers spit out busy response depends on IP and similar with normal response
+validation_xpaths=["not(//*[@id='busy_page_unique_element']"] # use "not" to detect busy response's element
 ```
-+  
 
 # 3 dollars & 5 minutes = 10,000 scraping
  (not implemented. don't pay yet)
