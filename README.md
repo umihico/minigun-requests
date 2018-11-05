@@ -67,10 +67,3 @@ validation_xpaths=["boolean(//*[@id='something_when_exist']|//*[@id='something_w
 # Case4: servers spit out busy response depends on IP and similar with normal response
 validation_xpaths=["not(//*[@id='busy_page_unique_element']"] # use "not" to detect busy response's element
 ```
-
-# 3 dollars & 5 minutes = 10,000 scraping
- (not implemented. don't pay yet)
-+ [PayPal page to buy api key](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RBWEMYUS7FCF6)
-https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LLWKDGWZRFQ94 ![Paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)
-
-[![paypal](https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LLWKDGWZRFQ94)
