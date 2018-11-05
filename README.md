@@ -48,12 +48,12 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 
 ## Advanced Usage
 ### What's "validation_xpaths"?
-　In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
+　In tons of requests, responses is not always what you want, such as incorrect path, IP blocking, non-related response from proxy servers. "validation_xpaths" are used to detect unwanted responses and then process can retry with another IP. Default validation_xpaths by default are
 ```
 validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
 # "//div[@id='yyy']" >> "boolean(//div[@id='yyy'])"
 ```
-which means "All specified elements by xpath have to exist in html." So you need to customize and specify validation_xpaths in these cases below:  
+which means "All scraping_xpaths have to find at least one element, otherwise retry." If you don't like this behavior, you need to customize validation_xpaths. Typical cases are below:  
 ```
 # Case1: one of scraping_xpaths scrap elements which dosen't exist often
 unstable_element_xpath = "//*[@class='sometime_exist']"
