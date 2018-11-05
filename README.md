@@ -1,4 +1,4 @@
-minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　![Powered by AWS Cloud Computing](/images/powered-by-aws_.png "Powered by AWS Cloud Computing")
+minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　![Powered by AWS Cloud Computing](/images/powered-by-aws.png "Powered by AWS Cloud Computing")
 ===
 Web scraping API to outsource tons of GET & xpath to cloud computing  
 
