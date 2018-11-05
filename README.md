@@ -1,5 +1,6 @@
 # Gotta Go Super Fast!
 ### Web Scraping API to outsource TONS of GET requests and xpath to aws lambda units  
+[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 ![demo](/images/demo.gif)
 ![Powered by AWS Cloud Computing](https://d0.awsstatic.com/logos/powered-by-aws.png "Powered by AWS Cloud Computing")
 # Performance Example and System Flowchart
