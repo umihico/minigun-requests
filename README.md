@@ -1,8 +1,9 @@
  # minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
-Web scraping API to outsource tons of GET & xpath to cloud computing
+> Web scraping API to outsource tons of GET & xpath to cloud computing
 ### Features
 + Back-end process between 1,000-20,000 requests per minutes like minigun.  
 + Desinged to finish requests within 5 minutes regardless of the amount of requests.  
+
 ![flowchart](/images/flowchart.png)
 ### Performance Examples
 + 6939 requests to get all stock prices from www.nasdaq.com in 162 seconds  
@@ -16,7 +17,7 @@ Web scraping API to outsource tons of GET & xpath to cloud computing
 ```
 pip install minigun
 ```
-### Run and make sure your requests works with trial account
+### Running the tests with trial account
 ```
 import minigun
 urls = [
