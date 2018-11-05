@@ -1,4 +1,4 @@
-# minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
+ # minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 Web scraping API to outsource tons of GET & xpath to cloud computing
 ### Features
 + Back-end process between 1,000-20,000 requests per minutes like minigun.  
@@ -30,8 +30,18 @@ scraping_xpaths = [
 result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 ```
 * Trial account is up to 1000 requests for one host per day.  
-* "trial5" is unlimited trial account but return only 5 results.
-if you get 'error' result too often, look at the - [Advanced Usage](#advanced-usage-whats-validation_xpaths)
+* "trial5" is unlimited trial account but return only 5 results.  
+If you get 'error' in result, look at [Advanced Usage](#advanced-usage-whats-validation_xpaths)
+
+### 3 dollars & 5 minutes = 30,000 times requests!
+If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](#https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
+After payment, PayPal's instant payment notification triggers immediately registering and top-up function.
+Then you can replace arguments to your PayPal email address and password you set.
+```
+import minigun
+minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOUR PASSWORD')
+```
+
 
 ## Advanced Usage: What's "validation_xpaths"?
  In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
