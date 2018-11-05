@@ -33,9 +33,10 @@ scraping_xpaths = [
 ]
 result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 ```
-* Trial account is up to 1000 requests for one host per day.  
-* "trial5" is unlimited trial account but return only 5 results.  
-If you get 'error' in result, look at [Advanced Usage](#advanced-usage-whats-validation_xpaths)
+
++ If you get 'error' in result, look at [Advanced Usage](#advanced-usage)  
++ Trial account is up to 1000 requests for one host per day.  
++ "trial5" is unlimited trial account but return only 5 results.  
 
 ### 3 dollars = 30,000 times requests!
 If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](#https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
