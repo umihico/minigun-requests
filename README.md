@@ -3,6 +3,7 @@ Web scraping API to outsource tons of GET & xpath to cloud computing
 ### Features
 + Back-end process between 1,000-20,000 requests per minutes like minigun.  
 + Desinged to finish requests within 5 minutes regardless of the amount of requests.  
+![flowchart](/images/flowchart.png)
 ### Performance Examples
 + 6939 requests to get all stock prices from www.nasdaq.com in 162 seconds  
 + 10000 requests to get new questions from www.stackoverflow.com in 142 seconds  
@@ -72,5 +73,3 @@ validation_xpaths=["not(//*[@id='busy_page_unique_element']"] # use "not" to det
 https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LLWKDGWZRFQ94 ![Paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)
 
 [![paypal](https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LLWKDGWZRFQ94)
-# System Flowchart
-![flowchart](/images/flowchart.png)
