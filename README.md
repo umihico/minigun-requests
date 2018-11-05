@@ -15,7 +15,7 @@ Web scraping API to outsource tons of GET & xpath to cloud computing
 ```
 pip install minigun
 ```
-### Make sure your requests works with trial account
+### Run and make sure your requests works with trial account
 ```
 import minigun
 urls = [
@@ -27,10 +27,30 @@ scraping_xpaths = [
     "//div[@id='xxx']",
     "//div[@id='yyy']",
 ]
-minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
+result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 ```
-*Trial account is up to 1000 requests for one host per day.  
-*email='trial5' is unlimited trial but return only 5 results.
+* Trial account is up to 1000 requests for one host per day.  
+* "trial5" is unlimited trial account but return only 5 results.
+
+### Advanced Usage: What's "validation_xpaths"?
+ In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
+```
+validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
+# "//div[@id='yyy']" >> "boolean(//div[@id='yyy'])"
+```
+which means "All specified elements by xpath have to exist in html." So you need to customize and specify validation_xpaths in these cases below:  
+```
+# Case1: one of scraping_xpaths try to scrap element which is unsure to exist  
+validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths if xpath != unstable_element_xpath]
+
+# Case2: scraping_xpaths are weak and high likely to match any response  
+scraping_xpaths=['//title'] # most response contain title, not useful to detect unwanted response
+validation_xpaths=['boolean(//*[@id=something])'] # specify something which dose'nt exist in wrong/blocked/unkonwn responses
+
+# Case3: unsure page exist or not
+```
++  
+
 # 3 dollars & 5 minutes = 10,000 scraping
  (not implemented. don't pay yet)
 + [PayPal page to buy api key](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RBWEMYUS7FCF6)
