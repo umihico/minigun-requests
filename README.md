@@ -39,7 +39,7 @@ result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 + "trial5" is unlimited trial account but return only 5 results.  
 
 ### 3 dollars = 30,000 times requests!
-If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](#https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
+　If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
 After payment, PayPal's instant payment notification triggers immediately registering and top-up function.
 Then you can replace arguments to your PayPal email address and password you set.
 ```
