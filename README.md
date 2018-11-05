@@ -1,7 +1,8 @@
- # minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
-> Web scraping API to outsource tons of GET & xpath to cloud computing
+ # minigun-requests
+> Web scraping API to outsource tons of GET & xpath to cloud computing  
+[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 ### Features
-+ Back-end process between 1,000-20,000 requests per minutes like minigun.  
++ fire your requests between 1,000-20,000 rounds per minutes like minigun.  
 + Desinged to finish requests within 5 minutes regardless of the amount of requests.  
 
 ![flowchart](/images/flowchart.png)
