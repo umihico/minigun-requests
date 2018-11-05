@@ -1,6 +1,6 @@
-minigun-requests
+minigun-requests[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 ===
-[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
+
 ### Web Scraping API to outsource TONS of GET requests and xpath to aws lambda units  
 
 ![demo](/images/demo.gif)
