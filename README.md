@@ -15,7 +15,7 @@ Web scraping API to outsource tons of GET & xpath to cloud computing
 ```
 pip install minigun
 ```
-### test with trial account for free
+### Make sure your requests works with trial account
 ```
 import minigun
 urls = [
@@ -29,7 +29,7 @@ scraping_xpaths = [
 ]
 minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 ```
-*Trial account is up to 1000 requests for one host per day.
+*Trial account is up to 1000 requests for one host per day.  
 *email='trial5' is unlimited trial but return only 5 results.
 # 3 dollars & 5 minutes = 10,000 scraping
  (not implemented. don't pay yet)
