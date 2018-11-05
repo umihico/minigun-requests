@@ -37,7 +37,7 @@ result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 * "trial5" is unlimited trial account but return only 5 results.  
 If you get 'error' in result, look at [Advanced Usage](#advanced-usage-whats-validation_xpaths)
 
-### 3 dollars & 5 minutes = 30,000 times requests!
+### 3 dollars = 30,000 times requests!
 If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](#https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
 After payment, PayPal's instant payment notification triggers immediately registering and top-up function.
 Then you can replace arguments to your PayPal email address and password you set.
@@ -46,8 +46,8 @@ import minigun
 minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOUR PASSWORD')
 ```
 
-
-## Advanced Usage: What's "validation_xpaths"?
+## Advanced Usage
+### What's "validation_xpaths"?
 　In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
 ```
 validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
@@ -69,3 +69,6 @@ validation_xpaths=["boolean(//*[@id='something_when_exist']|//*[@id='something_w
 # Case4: servers spit out busy response depends on IP and similar with normal response
 validation_xpaths=["not(//*[@id='busy_page_unique_element']"] # use "not" to detect busy response's element
 ```
+## Contributing
++ I appreciate any language matter advice in this README
++ tell me your features requests you want
