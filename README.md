@@ -3,7 +3,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 ### Features
-+ fire your requests between 1,000-20,000 rounds per minutes like minigun.  
++ API fire your requests by back-end between 1,000-20,000 rounds per minutes like minigun.  
 + Desinged to finish requests within 5 minutes regardless of the amount of requests.  
 
 ![flowchart](/images/flowchart.png)
