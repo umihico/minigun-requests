@@ -1,6 +1,6 @@
 # minigun-requests　[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)
 Web scraping API to outsource tons of GET & xpath to cloud computing
-### Features 
+### Features
 + Back-end process between 1,000-20,000 requests per minutes like minigun.  
 + Desinged to finish requests within 5 minutes regardless of the amount of requests.  
 ### Performance Examples
@@ -31,6 +31,7 @@ result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 ```
 * Trial account is up to 1000 requests for one host per day.  
 * "trial5" is unlimited trial account but return only 5 results.
+if you get 'error' result too often, look at the - [Advanced Usage](#Advanced Usage: What's "validation_xpaths"?)
 
 ## Advanced Usage: What's "validation_xpaths"?
  In tons of requests, responses is not always what you want, such as wrong path, IP blocking, unknown response thru proxy servers. "validation_xpaths" are used to detect unwanted responses and then system can retry with another IP. Default validation_xpaths without specifying are
