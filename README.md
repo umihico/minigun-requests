@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ### Features
 + API fire your requests by back-end between 1,000-20,000 rounds per minute like minigun.  
-+ Desinged to finish requests within 5 minutes regardless of the amount.  
++ Desinged auto scale parrarel computing to finish requests within 5 minutes regardless of the amount.  
 
 ![flowchart](/images/flowchart.png)
 ### Performance Examples
@@ -48,8 +48,10 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 ```
 
 ## Advanced Usage
+### When your requests are slow
+
 ### What's "validation_xpaths"?
-　In tons of requests, responses is not always what you want, such as incorrect path, IP blocking, non-related response from proxy servers. "validation_xpaths" are used to detect unwanted responses and then process can retry with another IP. Default validation_xpaths by default are
+　In tons of requests, responses is not always what you want, such as incorrect path, IP blocking, non-related response from proxy servers. "validation_xpaths" are used to detect unwanted responses and then process can retry with another IP. Default validation_xpaths are
 ```
 validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
 # "//div[@id='yyy']" >> "boolean(//div[@id='yyy'])"
