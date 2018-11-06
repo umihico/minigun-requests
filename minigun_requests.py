@@ -22,8 +22,8 @@ def requests(urls, scraping_xpaths, email='trial', password='trial', validation_
     args = [email, password, urls, scraping_xpaths,
             validation_xpaths, header_lang, request_id]
     response = _trigger_api('/', *args)
-    if response.text != '{"message": "Endpoint request timed out"}':
-        response.raise_for_status()
+    if response.text != '{"message": "Endpoint request timed out"}' and response.status_code != 200:
+        raise Exception(response.text)
     while True:
         output = get_output_from_url(url)
         if output:
