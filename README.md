@@ -32,6 +32,8 @@ scraping_xpaths = [
     "//div[@id='yyy']",
 ]
 result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
+# if you abort while waiting, use get_output_from_url function to get result
+result=get_output_from_url("http://minigun.umihi.co/DISTPLAYED_NUMBERS.txt"
 ```
 + I personally recommend [Xpath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl) to find xpath, and this article [Tips for strong XPath](https://developers.perfectomobile.com/pages/viewpage.action?pageId=13893679)
 + If you get 'error' in result, look at [Advanced Usage](#advanced-usage)  
@@ -54,6 +56,7 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 validation_xpath = "boolean(" + scraping_xpath + ")"
 ```
 This default validation_xpaths with 'Error' means "one of scraping_xpaths couldn't find any elements." This is what's happening in back-end. Please check the url and make sure the all scraping_xpaths pick at least one elements from the page. If you notice the element you want is not always there, you need to customize validation_xpaths.  
+
 　Why are validation_xpaths neccesary? It's becaure in tons of requests, responses is not always what you want. They are busy one, IP blocking, and non-related responses from proxy servers. "validation_xpaths" are used to detect such unwanted responses and then process can retry with another IP. This is common problem of web scraping (some websites block you even if your rate of access is slow)
 ### Examples of "validation_xpaths"
 　Best practice is simplifying validation_xpaths, like specifying only elements which exist definitely and unique, not in busy/blocked/non-related response. For example if you are scarping personal profile webpage, "Name" sounds definite, but "email" and "LinkedIn" sounds optional. More special case examples are blow:
