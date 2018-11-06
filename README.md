@@ -1,15 +1,78 @@
-# Gotta Go Super Fast!
-### Web Scraping API to outsource TONS of GET requests and xpath to aws lambda units  
-![demo](/images/demo.gif)
-![Powered by AWS Cloud Computing](https://d0.awsstatic.com/logos/powered-by-aws.png "Powered by AWS Cloud Computing")
-# Performance Example and System Flowchart
+ # minigun-requests
+> Web scraping API to outsource tons of GET & xpath to cloud computing  
+
+[![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+### Features
++ Back-end process your requests between 1,000-20,000 rounds per minute like minigun's rate of fire.  
++ Automatic concurrency scaling design to finish requests within 5 minutes regardless of the amount.  
+
+![flowchart](/images/flowchart.png)
+### Performance Examples
 + 6939 requests to get all stock prices from www.nasdaq.com in 162 seconds  
 + 10000 requests to get new questions from www.stackoverflow.com in 142 seconds  
+### Demo
+![demo](/images/demo.gif)
 
-![flowchart](/images/flowchart.jpg)
-# 3 dollars & 5 minutes = 10,000 scraping
- (not implemented. don't pay yet)
-+ [PayPal page to buy api key](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=RBWEMYUS7FCF6)
-https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LLWKDGWZRFQ94 ![Paypal](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_100x26.png)
 
-[![paypal](https://www.sandbox.paypal.com/en_US/i/btn/btn_cart_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LLWKDGWZRFQ94)
+## Getting Started
+### Installing
+```python
+pip install minigun
+```
+### Running the tests enough with trial account
+```python
+import minigun
+urls = [
+    "https://www.xxx.com/pages/1",
+    "https://www.xxx.com/pages/2",
+    "https://www.xxx.com/pages/3",
+]
+scraping_xpaths = [
+    "//div[@id='xxx']",
+    "//div[@id='yyy']",
+]
+result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
+```
++ I personally recommend [Xpath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl) to find xpath, and this article [Tips for strong XPath](https://developers.perfectomobile.com/pages/viewpage.action?pageId=13893679)
++ If you get 'error' in result, look at [Advanced Usage](#advanced-usage)  
++ Trial account is up to 1000 requests per each host per 24 hours.  
++ "trial5" is unlimited trial account but return only 5 results.  
+
+### 1 cent = 100 requests! from $3
+　If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](#https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
+After payment, PayPal's instant payment notification triggers immediately registering and top-up function.
+Then you can replace arguments to your PayPal email address and password you set.
+```python
+import minigun
+minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOUR PASSWORD')
+```
+
+## Advanced Usage
+### When you get error from result
+　You get it when one of "validation_xpaths" always return False from the paresed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argment which is generated according to "scraping_xpaths" by default like this.
+```python
+validation_xpath = "boolean(" + scraping_xpath + ")"
+```
+This default validation_xpaths with 'Error' means "one of scraping_xpaths couldn't find any elements." This is what's happening in back-end. Please check the url and make sure the all scraping_xpaths pick at least one elements from the page. If you notice the element you want is not always there, you need to customize validation_xpaths.  
+　Why are validation_xpaths neccesary? It's becaure in tons of requests, responses is not always what you want. They are busy one, IP blocking, and non-related responses from proxy servers. "validation_xpaths" are used to detect such unwanted responses and then process can retry with another IP. This is common problem of web scraping (some websites block you even if your rate of access is slow)
+### Examples of "validation_xpaths"
+　Best practice is simplifying validation_xpaths, like specifying only elements which exist definitely and unique, not in busy/blocked/non-related response. For example if you are scarping personal profile webpage, "Name" sounds definite, but "email" and "LinkedIn" sounds optional. More special case examples are blow:
+```python
+# Case1: scraping_xpaths are weak and high likely to match any responses
+scraping_xpaths=['//title', ] 
+# it's fine if you want only titles, but not useful to kick unwanted responses out.
+validation_xpaths = ['boolean(//*[@id='something_unique'])', ] 
+# specify something which dosen't exist in busy/wrong/blocked/unkonwn responses
+
+# Case2: unsure the url(page) exist or not
+# you can still scrap when 404 error if the content is html. telling that 404 is expected response stop retrying
+validation_xpaths = ["boolean(//*[@id='something_unique_when_200']|//*[@id='something_unique_when_404'])", ] 
+# use "|" as "or"
+
+# Case3: error page is quite similar with normal response
+validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ] 
+# detect element which appear when error response with "not" function
+```
+## Contributing
++ Any language matter advise would be greatly appreciated
++ Feel free to tell me features you want and errors you are facing
