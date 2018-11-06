@@ -13,8 +13,8 @@ def requests(urls, scraping_xpaths, email='trial', password='trial', validation_
     email = umihico._set_env_value('minigun', email)
     validation_xpaths = validation_xpaths or [
         f"boolean({xpath})" for xpath in scraping_xpaths]
-    # _raise_if_local_test_fail(urls, scraping_xpaths,
-    #                           validation_xpaths, header_lang)
+    _raise_if_local_test_fail(urls, scraping_xpaths,
+                              validation_xpaths, header_lang)
     request_id = umihico.string.numberize_int(
         umihico.hash_.hash_text(urls[0] + str(_time.time()))[:30])
     url = "http://minigun.umihi.co/" + str(request_id) + '.txt'
@@ -41,12 +41,8 @@ def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
         False
 
 
-def create_apikey():
-    return _trigger_api("/create-apikey", payload)
-
-
-def get_apikey_balance():
-    return _trigger_api("/get-apikey-balance", payload)
+def get_left_balance(email="YOUR PAYPAL EMAIL", password="YOUR PASSWORD"):
+    return _trigger_api("/get-apikey-balance", email, password)
 
 
 def _raise_if_local_test_fail(urls, scraping_xpaths, validation_xpaths, header_lang):
