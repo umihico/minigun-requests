@@ -74,5 +74,5 @@ validation_xpaths=["not(//*[@id='busy_page_unique_element']"]
 # detect element which appear when error response with "not" function
 ```
 ## Contributing
-+ I appreciate any language matter advice in this README
-+ tell me your features requests you want
++ Any language matter advise would be greatly appreciated
++ Feel free to tell me features you want and errors you are facing
