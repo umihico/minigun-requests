@@ -4,7 +4,7 @@
 [![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ### Features
 + Back-end process your requests between 1,000-20,000 rounds per minute like minigun's rate of fire.  
-+ Automatic concurrency scaling desing to finish requests within 5 minutes regardless of the amount.  
++ Automatic concurrency scaling design to finish requests within 5 minutes regardless of the amount.  
 
 ![flowchart](/images/flowchart.png)
 ### Performance Examples
@@ -42,7 +42,7 @@ result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 　If you are sure your arguments works well and willing to do more requests, please go to [PayPal page](#https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage/paypal-topup-page) and top-up.
 After payment, PayPal's instant payment notification triggers immediately registering and top-up function.
 Then you can replace arguments to your PayPal email address and password you set.
-```
+```python
 import minigun
 minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOUR PASSWORD')
 ```
@@ -52,12 +52,12 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 
 ### What's "validation_xpaths"?
 　In tons of requests, responses is not always what you want, such as incorrect path, IP blocking, non-related response from proxy servers. "validation_xpaths" are used to detect unwanted responses and then process can retry with another IP. Default validation_xpaths are
-```
+```python
 validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
 # "//div[@id='yyy']" >> "boolean(//div[@id='yyy'])"
 ```
 which means "All scraping_xpaths have to find at least one element, otherwise retry." If you don't like this behavior, you need to customize validation_xpaths. Typical cases are below:  
-```
+```python
 # Case1: one of scraping_xpaths scrap elements which dosen't exist often
 unstable_element_xpath = "//*[@class='sometime_exist']"
 validation_xpaths = validation_xpaths or [f"boolean({xpath})" for xpath in scraping_xpaths if xpath != unstable_element_xpath]
