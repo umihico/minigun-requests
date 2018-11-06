@@ -59,18 +59,18 @@ This default validation_xpaths with 'Error' means "one of scraping_xpaths couldn
 　Best practice is simplifying validation_xpaths, like specifying only elements which exist definitely and unique, not in busy/blocked/non-related response. For example if you are scarping personal profile webpage, "Name" sounds definite, but "email" and "LinkedIn" sounds optional. More special case examples are blow:
 ```python
 # Case1: scraping_xpaths are weak and high likely to match any responses
-scraping_xpaths=['//title',] 
+scraping_xpaths=['//title', ] 
 # it's fine if you want only titles, but not useful to kick unwanted responses out.
-validation_xpaths=['boolean(//*[@id='something_unique'])',] 
+validation_xpaths = ['boolean(//*[@id='something_unique'])', ] 
 # specify something which dosen't exist in busy/wrong/blocked/unkonwn responses
 
 # Case2: unsure the url(page) exist or not
 # you can still scrap when 404 error if the content is html. telling that 404 is expected response stop retrying
-validation_xpaths=["boolean(//*[@id='something_unique_when_200']|//*[@id='something_unique_when_404'])",] 
+validation_xpaths = ["boolean(//*[@id='something_unique_when_200']|//*[@id='something_unique_when_404'])", ] 
 # use "|" as "or"
 
 # Case3: error page is quite similar with normal response
-validation_xpaths=["not(//*[@id='busy_page_unique_element']"] 
+validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ] 
 # detect element which appear when error response with "not" function
 ```
 ## Contributing
