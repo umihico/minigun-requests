@@ -37,7 +37,7 @@ result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 result=minigun.get_output_from_url("http://minigun.umihi.co/DISTPLAYED_NUMBERS.txt")
 ```
 + I personally recommend [Xpath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl) to find xpath, and this article [Tips for strong XPath](https://developers.perfectomobile.com/pages/viewpage.action?pageId=13893679)
-+ If you get 'error' in result, look at [Advanced Usage](#advanced-usage)  
++ If you get 'error' in result, please read [When you get error from result](#when-you-get-error-from-result)  
 + Trial account is up to 1000 requests per each host per 24 hours.  
 + "trial5" is unlimited trial account but return only 5 results.  
 
@@ -51,6 +51,14 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 ```
 
 ## Advanced Usage
+### Can I know how much my balance left?
+This command will print your balance.
+```python
+import minigun
+minigun.get_left_balance(email="YOUR PAYPAL EMAIL", password="YOUR PASSWORD")
+```
+### Can I change my password?
+You can set and change only when you top-up. Older password dosen't work after change.
 ### When you get error from result
 　If you get nested dictionary as output correctly but some values are "error", they happen when one of "validation_xpaths" always return False from the paresed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argment which is generated according to "scraping_xpaths" by default like this.
 ```python
