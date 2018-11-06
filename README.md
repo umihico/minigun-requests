@@ -35,7 +35,7 @@ result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 ```
 
 + If you get 'error' in result, look at [Advanced Usage](#advanced-usage)  
-+ Trial account is up to 1000 requests for one host per day.  
++ Trial account is up to 1000 requests per each host per 24 hours.  
 + "trial5" is unlimited trial account but return only 5 results.  
 
 ### 1 cent = 100 requests! from $3
@@ -48,29 +48,30 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 ```
 
 ## Advanced Usage
-### When your requests are slow
-
-### What's "validation_xpaths"?
-　In tons of requests, responses is not always what you want, such as incorrect path, IP blocking, non-related response from proxy servers. "validation_xpaths" are used to detect unwanted responses and then process can retry with another IP. Default validation_xpaths are
+### When you get error from result
+　You get it when one of "validation_xpaths" always return False from the paresed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argment which is generated according to "scraping_xpaths" by default like this.
 ```python
-validation_xpaths = [f"boolean({xpath})" for xpath in scraping_xpaths]
-# "//div[@id='yyy']" >> "boolean(//div[@id='yyy'])"
+validation_xpath = "boolean("+ scraping_xpath ")"
 ```
-which means "All scraping_xpaths have to find at least one element, otherwise retry." If you don't like this behavior, you need to customize validation_xpaths. Typical cases are below:  
+This default validation_xpaths with 'Error' means "one of scraping_xpaths couldn't find any elements." This is what's happening in back-end. Please check the url and make sure the all scraping_xpaths pick at least one elements from the page. If you notice the element you want is not always there, you need to customize validation_xpaths.
+　Why are validation_xpaths neccesary? It's becaure in tons of requests, responses is not always what you want. They are busy one, IP blocking, and non-related responses from proxy servers. "validation_xpaths" are used to detect such unwanted responses and then process can retry with another IP. This is common problem of web scraping (some websites block you even if your rate of access is slow)
+### Examples of "validation_xpaths"
+　Best practice is simplifying validation_xpaths, like specifying only elements which exist definitely and unique, not in busy/blocked/non-related response. For example if you are scarping personal profile webpage, "Name" sounds definite, but "email" and "LinkedIn" sounds optional. More special case examples are blow:
 ```python
-# Case1: one of scraping_xpaths scrap elements which dosen't exist often
-unstable_element_xpath = "//*[@class='sometime_exist']"
-validation_xpaths = validation_xpaths or [f"boolean({xpath})" for xpath in scraping_xpaths if xpath != unstable_element_xpath]
+# Case1: scraping_xpaths are weak and high likely to match any responses
+scraping_xpaths=['//title',] 
+# it's fine if you want only titles, but not useful to kick unwanted responses out.
+validation_xpaths=['boolean(//*[@id='something_unique'])',] 
+# specify something which dosen't exist in busy/wrong/blocked/unkonwn responses
 
-# Case2: scraping_xpaths are weak and high likely to match any response  
-scraping_xpaths=['//title',] # most response contain title, not useful to detect unwanted response
-validation_xpaths=['boolean(//*[@id='something_unique'])',] # specify something which dose'nt exist in wrong/blocked/unkonwn responses
+# Case2: unsure the url(page) exist or not
+# you can still scrap when 404 error if the content is html. telling that 404 is expected response stop retrying
+validation_xpaths=["boolean(//*[@id='something_unique_when_200']|//*[@id='something_unique_when_404'])",] 
+# use "|" as "or"
 
-# Case3: unsure even the url(page) exist or not
-validation_xpaths=["boolean(//*[@id='something_when_exist']|//*[@id='something_when_not_exist'])",] # use "|" as "or"
-
-# Case4: servers spit out busy response depends on IP and similar with normal response
-validation_xpaths=["not(//*[@id='busy_page_unique_element']"] # use "not" to detect busy response's element
+# Case3: error page is quite similar with normal response
+validation_xpaths=["not(//*[@id='busy_page_unique_element']"] 
+# detect element which appear when error response with "not" function
 ```
 ## Contributing
 + I appreciate any language matter advice in this README
