@@ -52,7 +52,7 @@ minigun.requests(urls, scraping_xpaths, email='YOUR PAYPAL EMAIL', password='YOU
 
 ## Advanced Usage
 ### When you get error from result
-　You get it when one of "validation_xpaths" always return False from the paresed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argment which is generated according to "scraping_xpaths" by default like this.
+　If you get nested dictionary as output correctly but some values are "error", they happen when one of "validation_xpaths" always return False from the paresed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argment which is generated according to "scraping_xpaths" by default like this.
 ```python
 validation_xpath = "boolean(" + scraping_xpath + ")"
 ```
