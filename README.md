@@ -3,8 +3,8 @@
 
 [![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ### Features
-+ API fire your requests by back-end between 1,000-20,000 rounds per minute like minigun.  
-+ Desinged auto scale parrarel computing to finish requests within 5 minutes regardless of the amount.  
++ Back-end process your requests between 1,000-20,000 rounds per minute like minigun's rate of fire.  
++ Automatic concurrency scaling desing to finish requests within 5 minutes regardless of the amount.  
 
 ![flowchart](/images/flowchart.png)
 ### Performance Examples
@@ -16,11 +16,11 @@
 
 ## Getting Started
 ### Installing
-```
+```python
 pip install minigun
 ```
 ### Running the tests enough with trial account
-```
+```python
 import minigun
 urls = [
     "https://www.xxx.com/pages/1",
