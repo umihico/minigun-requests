@@ -33,7 +33,7 @@ scraping_xpaths = [
 ]
 result=minigun.requests(urls, scraping_xpaths, email='trial', password='trial')
 # if you abort while waiting, use get_output_from_url function to get result
-result=get_output_from_url("http://minigun.umihi.co/DISTPLAYED_NUMBERS.txt"
+result=minigun.get_output_from_url("http://minigun.umihi.co/DISTPLAYED_NUMBERS.txt"
 ```
 + I personally recommend [Xpath Helper](https://chrome.google.com/webstore/detail/xpath-helper/hgimnogjllphhhkhlmebbmlgjoejdpjl) to find xpath, and this article [Tips for strong XPath](https://developers.perfectomobile.com/pages/viewpage.action?pageId=13893679)
 + If you get 'error' in result, look at [Advanced Usage](#advanced-usage)  
