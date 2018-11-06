@@ -4,26 +4,16 @@ import pprint
 
 
 def example():
-
-    # pip install minigun
-import minigun
-import pprint
-urls = [
-    "https://www.nasdaq.com/symbol/amzn",
-    "https://www.nasdaq.com/symbol/googl",
-    "https://www.nasdaq.com/symbol/aapl",
-    "https://www.nasdaq.com/symbol/fb",
-    "https://www.nasdaq.com/symbol/nflx",
-    "https://www.nasdaq.com/symbol/msft",
-    "https://www.nasdaq.com/symbol/nvda",
-]
-scraping_xpaths = [
-    "//div[@id='qwidget_lastsale']",
-    "//div[@id='qwidget_percent']",
-]
-pprint.pprint(minigun.requests(urls, scraping_xpaths,
-                               email='trial', password='trial'))
-
+    urls = [
+        "https://www.nasdaq.com/symbol/amzn",
+        "https://www.nasdaq.com/symbol/googl",
+        "https://www.nasdaq.com/symbol/aapl",
+        "https://www.nasdaq.com/symbol/fb",
+    ]
+    scraping_xpaths = [
+        "//div[@id='qwidget_lastsale']",
+        "//div[@id='qwidget_percent']",
+    ]
     result = minigun.requests(urls, scraping_xpaths,
                               email='trial', password='trial')
     pprint.pprint(result)
