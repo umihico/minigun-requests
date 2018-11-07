@@ -42,7 +42,7 @@ def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
 
 
 def get_left_balance(email="YOUR PAYPAL EMAIL", password="YOUR PASSWORD"):
-    return _trigger_api("/get-apikey-balance", email, password)
+    print(_trigger_api("/get-apikey-balance", email, password).text)
 
 
 def _raise_if_local_test_fail(urls, scraping_xpaths, validation_xpaths, header_lang):
