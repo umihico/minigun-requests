@@ -35,12 +35,19 @@ def requests(urls, scraping_xpaths, email='trial', password='trial', validation_
 def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
     head = _requests.head(url)
     if head.status_code == 200:
-        print('downloading...')
+        downloading_start_time = _time.time()
+
+        print('downloading...', end='')
         response = _requests.get(url)
+        print('took', int(_time.time() - downloading_start_time), 'sec')
         if response.status_code == 200:
-            print('parsing...')
+            parsing_start_time = _time.time()
+
+            print('parsing...', end='')
             text = _base64.b64decode(response.text).decode()
-            return _ast.literal_eval(text)
+            r = _ast.literal_eval(text)
+            print('took', int(_time.time() - parsing_start_time), 'sec')
+            return r
         else:
             False
 
