@@ -9,6 +9,9 @@ def example(email='trial', password='trial'):
         "https://www.nasdaq.com/symbol/googl",
         "https://www.nasdaq.com/symbol/aapl",
         "https://www.nasdaq.com/symbol/fb",
+        "https://www.nasdaq.com/symbol/nflx",
+        "https://www.nasdaq.com/symbol/msft",
+        "https://www.nasdaq.com/symbol/nvda",
     ]
     scraping_xpaths = [
         "//div[@id='qwidget_lastsale']",
