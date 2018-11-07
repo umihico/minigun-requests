@@ -54,15 +54,15 @@ import minigun
 minigun.get_left_balance(email="YOUR PAYPAL EMAIL", password="YOUR PASSWORD")
 ```
 ### Can I change my password?
-You can set and change only when you top-up. Older password dosen't work after change.
+You can set and change only when you top-up. Only the newest password works.
 ### When you get error from result
-　If you get nested dictionary as output correctly but some values are "error", they happen when one of "validation_xpaths" always return False from the paresed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argment which is generated according to "scraping_xpaths" by default like this.
+　If you get nested dictionary as output correctly but some values are "error", they happen when one of "validation_xpaths" always return False from the parsed html regardless of retrying many times with IP rotation. "validation_xpaths" are optional argument which is generated according to "scraping_xpaths" by default like this.
 ```python
 validation_xpath = "boolean(" + scraping_xpath + ")"
 ```
 This default validation_xpaths with 'Error' means "one of scraping_xpaths couldn't find any elements." This is what's happening in back-end. Please check the url and make sure the all scraping_xpaths pick at least one elements from the page. If you notice the element you want is not always there, you need to customize validation_xpaths.  
 
-　Why are validation_xpaths neccesary? It's becaure in tons of requests, responses is not always what you want. They are busy one, IP blocking, and non-related responses from proxy servers. "validation_xpaths" are used to detect such unwanted responses and then process can retry with another IP. This is common problem of web scraping (some websites block you even if your rate of access is slow)
+　Why are validation_xpaths neccesary? It's because in tons of requests, responses is not always what you want. They are busy one, IP blocking, and non-related responses from proxy servers. "validation_xpaths" are used to detect such unwanted responses and then process can retry with another IP. This is common problem of web scraping (some websites block you even if your rate of access is slow)
 ### Examples of "validation_xpaths"
 　Best practice is simplifying validation_xpaths, like specifying only elements which exist definitely and unique, not in busy/blocked/non-related response. For example if you are scarping personal profile webpage, "Name" sounds definite, but "email" and "LinkedIn" sounds optional. More special case examples are blow:
 ```python
@@ -70,7 +70,7 @@ This default validation_xpaths with 'Error' means "one of scraping_xpaths couldn
 scraping_xpaths=['//title', ] 
 # it's fine if you want only titles, but not useful to kick unwanted responses out.
 validation_xpaths = ['boolean(//*[@id='something_unique'])', ] 
-# specify something which dosen't exist in busy/wrong/blocked/unkonwn responses
+# specify something which doesn't exist in busy/wrong/blocked/unkonwn responses
 
 # Case2: unsure the url(page) exist or not
 # you can still scrap when 404 error if the content is html. telling that 404 is expected response stop retrying
@@ -84,4 +84,3 @@ validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ]
 ## Contributing
 + Any language matter advise would be greatly appreciated
 + Feel free to tell me features you want and errors you are facing
-+ Give me some iconic minigun picture
