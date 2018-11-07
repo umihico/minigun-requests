@@ -3,7 +3,7 @@ import minigun
 import pprint
 
 
-def example():
+def example(email='trial', password='trial'):
     urls = [
         "https://www.nasdaq.com/symbol/amzn",
         "https://www.nasdaq.com/symbol/googl",
@@ -15,7 +15,7 @@ def example():
         "//div[@id='qwidget_percent']",
     ]
     result = minigun.requests(urls, scraping_xpaths,
-                              email='trial', password='trial')
+                              email=email, password=password)
     pprint.pprint(result)
     pprint.pprint(type(result))
 
