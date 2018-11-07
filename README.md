@@ -6,14 +6,10 @@
 + Back-end process your requests between 1,000-20,000 rounds per minute like minigun's rate of fire.  
 + Automatic concurrency scaling design to finish requests within 5 minutes regardless of the amount.  
 
-![flowchart](/images/flowchart.png)
+![demo](/images/demo.gif)![flowchart](/images/flowchart.png)
 ### Performance Examples
 + 6939 requests to get all stock prices from www.nasdaq.com in 162 seconds  
 + 10000 requests to get new questions from www.stackoverflow.com in 142 seconds  
-### Demo
-![demo](/images/demo.gif)
-
-
 ## Getting Started
 ### Installing
 ```python
