@@ -33,12 +33,16 @@ def requests(urls, scraping_xpaths, email='trial', password='trial', validation_
 
 
 def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
-    response = _requests.get(url)
-    if response.status_code == 200:
-        text = _base64.b64decode(response.text).decode()
-        return _ast.literal_eval(text)
-    else:
-        False
+    head = _requests.head(url)
+    if head.status_code == 200:
+        print('downloading...')
+        response = _requests.get(url)
+        if response.status_code == 200:
+            print('parsing...')
+            text = _base64.b64decode(response.text).decode()
+            return _ast.literal_eval(text)
+        else:
+            False
 
 
 def get_left_balance(email="YOUR PAYPAL EMAIL", password="YOUR PASSWORD"):
