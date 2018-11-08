@@ -3,7 +3,7 @@
 
 [![PyPI](https://img.shields.io/pypi/v/minigun.svg)](https://pypi.python.org/pypi/minigun)　[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 ### Features
-+ Back-end process your requests between 1,000-10,000 rounds per minute like minigun's rate of fire.  
++ Back-end process your requests between 1,000-20,000 rounds per minute like minigun's rate of fire.  
 + Automatic concurrency scaling design to finish requests within 10 minutes regardless of the amount.  
 
 ![demo](/images/demo.gif)![flowchart](/images/flowchart.png)
