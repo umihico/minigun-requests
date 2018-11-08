@@ -8,7 +8,7 @@
 
 ![demo](/images/demo.gif)![flowchart](/images/flowchart.png)
 ### Performance Examples
-+ 6939 requests to get all stock prices from www.nasdaq.com in 162 seconds  
++ 6911 requests to get all stock prices from www.nasdaq.com in 72 seconds  
 + 10000 requests to get new questions from www.stackoverflow.com in 142 seconds  
 + 34453 requests to get all available rentals in tokyo from www.suumo.jp in 277 seconds  
 ## Getting Started
