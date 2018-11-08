@@ -82,11 +82,11 @@ validation_xpaths = ["boolean(//*[@id='something_unique_when_200']|//*[@id='some
 validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ] 
 # detect element which appear when error response with "not" function
 ```
-### Limitation
+### Issues
 + CPUs are scalable but proxy servers are only between 2,000-5,000 so far. Their bandwidths are the biggest speed limit.
 + AWS Lambda limits the amount of payload only 6MB, so the amount of urls in one API request are limited.
-+ 
++ Response validation use statistical approach. Validations give up and return False when good proxy servers fail to GET many times. Good proxy servers means proxy servers which succeed many time in previous requests to the same host. When they get banned at the same time, Back-end give up eralier even if the url and validation xpaths are correct if IP address is fine.
 
 ## Contributing
-+ Any language matter advise would be greatly appreciated
++ Telling me how to use language correctly is greatly appreciated
 + Feel free to tell me features you want and errors you are facing
