@@ -66,6 +66,7 @@ def _get_output_from_url_chunks_iter(url):
         _base64.b64decode(response.text).decode())
     for chunk_url in chunk_urls:
         chunk_response = _requests.get(chunk_url)
+        print(chunk_response.text)
         text = _base64.b64decode(chunk_response.text).decode()
         yield text
 
