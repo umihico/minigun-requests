@@ -83,7 +83,7 @@ validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ]
 # detect element which appear when error response with "not" function
 ```
 ### Issues
-+ CPUs are scalable but proxy servers are only between 2,000-5,000 so far. Their bandwidths are the biggest speed limit.
++ CPUs are scalable but proxy servers are only between 2,000-5,000 so far. Their bandwidths and IP evaluations are the biggest speed limit.
 + AWS Lambda limits the amount of payload only 6MB, so the amount of urls in one API request are limited.
 + Sometimes system spit out "error" even if url and validation_xpath are correct. It happens because validation use statistical approach. Validations give up and return False when "good" proxy servers fail to GET many times. Proxy servers are evaluated "good" when they succeed many time in previous requests. When good ones get banned at the same time, Back-end judge wrongly as a result.
 
