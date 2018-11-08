@@ -10,7 +10,7 @@
 ### Performance Examples
 + 6911 requests to get all stock prices from www.nasdaq.com in 72 seconds  
 + 34453 requests to get all available rental names in tokyo from www.suumo.jp in 201 seconds  
-+ 100000 requests to get new question titles from www.stackoverflow.com in 81 seconds  
++ 500000 requests to get new question titles from www.stackoverflow.com in 151 seconds  
 ## Getting Started
 ### Installing
 ```python
