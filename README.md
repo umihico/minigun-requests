@@ -84,7 +84,8 @@ validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ]
 ```
 ### Limitation
 + CPUs are scalable but proxy servers are only between 2,000-5,000 so far. Their bandwidths are the biggest speed limit.
-+ AWS Lambda limits the amount of payload only 6MB, so the amount of urls are limited.
++ AWS Lambda limits the amount of payload only 6MB, so the amount of urls in one API request are limited.
++ 
 
 ## Contributing
 + Any language matter advise would be greatly appreciated
