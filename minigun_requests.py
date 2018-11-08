@@ -5,6 +5,7 @@ import random as _random
 from lxml.html import fromstring as _fromstring
 import base64 as _base64
 import ast as _ast
+import tqdm as _tqdm
 default_header_lang = "ja,en-US;q=0.9,en;q=0.8"
 
 
@@ -33,6 +34,10 @@ def requests(urls, scraping_xpaths, email='trial', password='trial', validation_
 
 
 def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
+    """
+    return output thru url when you abort minigun.requests
+    outputs will be deleted after a while.
+    """
     output_dict = {}
     for chunk_output_dict in get_output_from_url_iter(url):
         output_dict.update(chunk_output_dict)
@@ -40,6 +45,10 @@ def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
 
 
 def get_output_from_url_iter(url):
+    """
+    return outputs before they are merged in minigun.requests
+    good when outputs are too huge to merge.
+    """
     for chunk_index, text in enumerate(_get_output_from_url_chunks_iter(url)):
         header_row, *content_rows = text.split("\n")
         if chunk_index == 0:
@@ -64,7 +73,7 @@ def _get_output_from_url_chunks_iter(url):
         return None
     chunk_urls = _ast.literal_eval(
         _base64.b64decode(response.text).decode())
-    for chunk_url in chunk_urls:
+    for chunk_url in _tqdm.tqdm(iterable=chunk_urls, desc='downloading and parsing outputs'):
         chunk_response = _requests.get(chunk_url)
         # print(chunk_response.text)
         text = _base64.b64decode(chunk_response.text).decode()
@@ -108,9 +117,3 @@ def _trigger_api(path, *args):
     api_endpoint = "https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage"
     return umihico.aws.lambda_.trigger_via_apigateway(
         api_endpoint + path, payload=payload)
-
-
-if __name__ == '__main__':
-    url = "http://minigun.umihi.co/8621224549063305.txt"
-    get_output_from_url(url)
-    # scrap_all_stock_pirces()    main()
