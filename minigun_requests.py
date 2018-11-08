@@ -66,7 +66,7 @@ def _get_output_from_url_chunks_iter(url):
         _base64.b64decode(response.text).decode())
     for chunk_url in chunk_urls:
         chunk_response = _requests.get(chunk_url)
-        print(chunk_response.text)
+        # print(chunk_response.text)
         text = _base64.b64decode(chunk_response.text).decode()
         yield text
 
@@ -108,3 +108,9 @@ def _trigger_api(path, *args):
     api_endpoint = "https://ic8ntngzk4.execute-api.us-west-2.amazonaws.com/stage"
     return umihico.aws.lambda_.trigger_via_apigateway(
         api_endpoint + path, payload=payload)
+
+
+if __name__ == '__main__':
+    url = "http://minigun.umihi.co/8621224549063305.txt"
+    get_output_from_url(url)
+    # scrap_all_stock_pirces()    main()
