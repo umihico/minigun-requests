@@ -82,6 +82,10 @@ validation_xpaths = ["boolean(//*[@id='something_unique_when_200']|//*[@id='some
 validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ] 
 # detect element which appear when error response with "not" function
 ```
+### Limitation
++ CPUs are scalable but proxy servers are only between 2,000-5,000 so far. Their bandwidths are the biggest speed limit.
++ AWS Lambda limits the amount of payload only 6MB, so the amount of urls are limited.
+
 ## Contributing
 + Any language matter advise would be greatly appreciated
 + Feel free to tell me features you want and errors you are facing
