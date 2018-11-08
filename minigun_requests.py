@@ -33,23 +33,41 @@ def requests(urls, scraping_xpaths, email='trial', password='trial', validation_
 
 
 def get_output_from_url(url='http://minigun.umihi.co/XXXXXXXX'):
-    head = _requests.head(url)
-    if head.status_code == 200:
-        downloading_start_time = _time.time()
+    output_dict = {}
+    for chunk_output_dict in get_output_from_url_iter(url):
+        output_dict.update(chunk_output_dict)
+    return output_dict
 
-        print('downloading...', end='')
-        response = _requests.get(url)
-        print('took', int(_time.time() - downloading_start_time), 'sec')
-        if response.status_code == 200:
-            parsing_start_time = _time.time()
 
-            print('parsing...', end='')
-            text = _base64.b64decode(response.text).decode()
-            r = _ast.literal_eval(text)
-            print('took', int(_time.time() - parsing_start_time), 'sec')
-            return r
-        else:
-            False
+def get_output_from_url_iter(url):
+    for chunk_index, text in enumerate(_get_output_from_url_chunks_iter(url)):
+        header_row, *content_rows = text.split("\n")
+        if chunk_index == 0:
+            _, *scraping_xpaths = header_row.split(",")
+            scraping_xpaths = [x.replace('__(LF)__', '\n').replace(
+                '__(CM)__', ',') for x in scraping_xpaths]
+        output_dict = {}
+        for row_text in content_rows:
+            row_text = row_text.replace('__(LF)__', '\n')
+            url, *xpath_results = row_text.split(',')
+            output_dict[url] = {xpath: _ast.literal_eval(
+                result.replace('__(CM)__', ',')) for xpath, result in zip(scraping_xpaths, xpath_results)}
+        yield output_dict
+
+
+def _get_output_from_url_chunks_iter(url):
+    """
+    original ',' are replaced as '__(CM)__' and new lines are as '__(LF)__'
+    """
+    response = _requests.get(url)
+    if response.status_code != 200:
+        return None
+    chunk_urls = _ast.literal_eval(
+        _base64.b64decode(response.text).decode())
+    for chunk_url in chunk_urls:
+        chunk_response = _requests.get(chunk_url)
+        text = _base64.b64decode(chunk_response.text).decode()
+        yield text
 
 
 def get_left_balance(email="YOUR PAYPAL EMAIL", password="YOUR PASSWORD"):
