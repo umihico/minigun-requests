@@ -89,5 +89,5 @@ validation_xpaths = ["not(//*[@id='busy_page_unique_element']", ]
 + Sometimes result are partially "error" even when url and validation_xpath are correct. It happens because validation use statistical approach. Validations give up and return False when "good" proxy servers fail to GET many times. Proxy servers are evaluated "good" when they succeed many time in previous requests. When good ones get banned at the same time, Back-end judge wrongly as a result.
 
 ## Contributing
-+ Telling me how to use language correctly is greatly appreciated
++ Helping my language development is greatly appreciated
 + Feel free to tell me features you want and errors you are facing
