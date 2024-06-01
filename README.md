@@ -1,3 +1,6 @@
+> [!CAUTION]
+> Sorry, this service is no longer available.
+ 
  # minigun-requests
 > Web scraping API to outsource tons of GET & xpath to cloud computing  
 
